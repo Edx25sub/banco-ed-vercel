@@ -1,0 +1,12 @@
+{
+    "version": 2,
+    "builds": [
+      { "src": "api/server.js", "use": "@vercel/node" }
+    ],
+    "routes": [
+      { "src": "/data", "dest": "api/server.js" },
+      { "src": "/send", "methods": ["POST"], "dest": "api/server.js" },
+      { "src": "/(.*)", "dest": "/public/$1" }
+    ]
+  }
+  

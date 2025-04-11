@@ -1,0 +1,97 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #f1f1f1;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #333;
+        }
+        .btn {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #cc0000;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        h2 {
+            margin-top: 40px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+        }
+        .bloco {
+            background-color: #292929;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 4px solid #3fa9f5;
+            border-radius: 5px;
+        }
+        .data {
+            color: #999;
+            font-size: 0.85em;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dashboard</h1>
+
+    <table id="data-table">
+        <tr>
+            <th>Nome</th>
+            <th>User ID</th>
+            <th>IP</th>
+            <th>Token</th>
+        </tr>
+    </table>
+
+    <h2>Anotações</h2>
+    <div id="notas"></div>
+
+    <script>
+        fetch('/data')
+            .then(res => res.json())
+            .then(data => {
+                const table = document.getElementById('data-table');
+                const notasDiv = document.getElementById('notas');
+
+                data.forEach(item => {
+                    let row = table.insertRow();
+                    row.innerHTML = `
+                        <td>${item.nome}</td>
+                        <td>${item.user_id}</td>
+                        <td>${item.ip}</td>
+                        <td>${item.token}</td>`;
+
+                    if (item.anotacao) {
+                        notasDiv.innerHTML += `
+                        <div class="bloco">
+                            <div>${item.anotacao}</div>
+                            <div class="data">${item.data_envio}</div>
+                        </div>`;
+                    }
+                });
+            });
+    </script>
+</body>
+</html>
