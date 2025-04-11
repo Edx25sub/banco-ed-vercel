@@ -69,7 +69,7 @@
     <div id="notas"></div>
 
     <script>
-        fetch('/data')
+        fetch('/api/server')
             .then(res => res.json())
             .then(data => {
                 const table = document.getElementById('data-table');
