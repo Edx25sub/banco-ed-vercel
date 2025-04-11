@@ -1,8 +1,6 @@
 {
-    "name": "dashboard-node",
-    "version": "1.0.0",
-    "scripts": {
-      "start": "node api/server.js"
-    }
-  }
-  
+  "name": "dashboard-vercel",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT"
+}
